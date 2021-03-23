@@ -1,0 +1,2280 @@
+/*
+COLORS:
+
+    primary-color: #29B5F6
+    primary-dark-color: #0388D2
+    Accent: #FFB300
+
+    button-hover: #0388D2
+
+    Heading: #000000
+    dark-grey: #424242
+
+    Ligh-Accent: #f2713d
+    Dark-Accent: #732a10
+
+    font-light: #777
+    font-white: #fff
+
+    grey-light: #e9e9e9
+
+*/
+
+html {
+    font-size: 62.5%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: roboto;
+    letter-spacing: 0.05rem;
+}
+
+.button {
+    text-decoration: none;
+    background-color: #FFB300;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 10rem;
+    text-align: center;
+    justify-self: center;
+    padding: 0.5rem 0;
+    margin: 0.2rem 0 0 0;
+    width: 13.5rem;
+}
+
+.dialog-modal-container {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.newsletter-subscription-dialog {
+    display: grid;
+    position: absolute;
+    background-color: #fefefe;
+    margin: auto;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    border-radius: 4px;
+    padding: 4rem;
+}
+
+.newsletter-subscription-dialog .message {
+    font-size: 1.2rem;
+    text-align: center;
+    justify-self: center;
+    margin-bottom: 3rem;
+    font-weight: lighter;
+}
+
+.newsletter-subscription-dialog .message-span {
+    font-weight: bold;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+/*********************************************************** Navigation Header *****************************************************/
+
+.navigation-header {
+    display: grid;
+    height: 7vh;
+    box-shadow: 0px 1px 2px #81818185;
+}
+
+.logo {
+    align-self: center;
+    object-fit: contain;
+}
+
+.logo svg {
+    width: 7rem;
+    height: 100%;
+    fill: #29B5F6;
+    stroke: #29B5F6;
+}
+
+.logo svg:hover {
+    fill: #0388D2;
+    stroke: #0388D2;
+}
+
+.nav-large-screen {
+    display: none;
+}
+
+/****************************************************** Small Screen Navigation ****************************************************/
+
+.nav-small-screen {
+    display: block;
+}
+
+.nav-box-checkbox {
+    display: none;
+}
+
+.nav-box-button {
+    background: white;
+    height: 4rem;
+    width: 4rem;
+    position: fixed;
+    border-radius: 50%;
+    top: 0.3rem;
+    right: 0.5rem;
+    z-index: 1200;
+    text-align: center;
+    cursor: pointer;
+}
+
+.nav-box-background {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 0.4rem;
+    right: 0.6rem;
+    background-image: radial-gradient(#29B5F6, #0388D2);
+    z-index: 1000;
+    transition: all 0.8s;
+}
+
+.nav-box-nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    transition-delay: .3s;
+    opacity: 0;
+    width: 0;
+}
+
+.nav-box-list {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style: none;
+    text-align: center;
+}
+
+.nav-box-item {
+    margin: 1rem;
+}
+
+.nav-box-link:link, .nav-box-link:visited {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 300;
+    padding: 1rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-image: linear-gradient(120deg, transparent 0%, transparent 50%, white 50%);
+    background-size: 230%;
+    transition: all 0.4s;
+}
+
+.nav-box-link:hover, .nav-box-link:active {
+    background-position: 100%;
+    color: #0388D2;
+    transform: translateX(1rem);
+}
+
+.nav-box-checkbox:checked~.nav-box-background {
+    transform: scale(70);
+}
+
+.nav-box-checkbox:checked~.nav-box-nav {
+    opacity: 1;
+    width: 100%;
+}
+
+.nav-box-icon {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.nav-box-icon, .nav-box-icon::before, .nav-box-icon::after {
+    width: 2.8rem;
+    height: 2px;
+    background-color: #29B5F6;
+    display: inline-block;
+}
+
+.nav-box-icon::before, .nav-box-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all 0.2s;
+}
+
+.nav-box-icon::before {
+    top: -.8rem;
+}
+
+.nav-box-icon::after {
+    top: .8rem;
+}
+
+.nav-box-checkbox:checked+.nav-box-button .nav-box-icon {
+    background-color: transparent;
+}
+
+.nav-box-checkbox:checked+.nav-box-button .nav-box-icon::before {
+    top: 0;
+    transform: rotate(135deg);
+}
+
+.nav-box-checkbox:checked+.nav-box-button .nav-box-icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+}
+
+.nav-large-screen {
+    display: none;
+    align-self: center;
+    justify-self: end;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 6rem;
+    font-size: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #29B5F6;
+}
+
+/************************************************************** Footer *************************************************************/
+
+footer {
+    /**-------------- Footer Map Image (https://www.freepik.com/free-vector/grey-world-map_893780.htm#page=1&query=map&position=0) ------------*/
+    position: relative;
+    grid-row: 3/4;
+    background: url(../images/footer_background.svg);
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: cover;
+    height: 27rem;
+}
+
+.newsletter-container {
+    display: grid;
+    padding: 9rem 1rem 1rem 1rem;
+}
+
+.newsletter-container #newsletter-message {
+    font-size: 1rem;
+    color: #BC1B0E;
+    justify-self: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.newsletter-container .heading {
+    font-size: 1.4rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+#email {
+    width: 23rem;
+    justify-self: center;
+    padding: 0.8rem 2rem;
+    margin: 0.6rem 0 0.5rem 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+
+#email::placeholder {
+    color: #B7BAC9;
+}
+
+.footer-container {
+    position: absolute;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    bottom: 0;
+    padding: 2rem 2rem 0 2rem;
+    transform: translate(0, -20%);
+}
+
+.footer-container svg {
+    align-self: center;
+    width: 3.4rem;
+    height: 3.8rem;
+    object-fit: contain;
+    fill: white;
+    stroke: white;
+}
+
+.contact-link {
+    align-self: end;
+    justify-self: end;
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+}
+
+/***********************************************************************************************************************************
+/******************************************************** Home Page ****************************************************************
+/***********************************************************************************************************************************/
+
+.home-page {
+    display: grid;
+    width: 100%;
+    background-color: white;
+}
+
+/********************************************************** Header Section *********************************************************/
+
+.hero-image-header {
+    display: grid;
+    grid-row: 1/2;
+    grid-template-rows: 7vh auto;
+}
+
+.navigation-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-row: 1/2;
+    background-color: white;
+    padding: 0 2rem 0 4rem;
+}
+
+.hero-container {
+    position: relative;
+    grid-row: 2/3;
+}
+
+.hero-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/******************************************************** Heat Map Section *********************************************************/
+
+.general-comparison-container {
+    display: grid;
+    width: 95%;
+    margin: 4rem auto 4rem auto;
+}
+
+.general-comparison-container .heading {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    color: #212529;
+    letter-spacing: 0.1rem;
+}
+
+.general-comparison-container .underline {
+    width: 5rem;
+    height: 0.2rem;
+    background-color: #FFB300;
+    margin-bottom: 1.2rem;
+    justify-self: center;
+}
+
+.general-comparison-container .description {
+    font-size: 1.05rem;
+    color: #313131;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.general-heat-map-container {
+    display: grid;
+    border: 0.5px solid #72727241;
+    border-radius: 3px;
+    margin: 3rem auto 0 auto;
+    padding: 0.9rem 0.7rem;
+    width: 100%;
+}
+
+.general-heat-map-container .heading {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.general-heat-map {
+    border-radius: 3px;
+    height: 210px;
+    margin: 0.8rem 0.4rem 0.5rem 0.4rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.general-heat-map-description {
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0 auto 0.5rem auto;
+    width: 95%;
+}
+
+/***************************************************** Feature Container **********************************************************/
+
+.features-section {
+    position: relative;
+    background: #ffffff;
+    height: 93rem;
+}
+
+.feature-grey-background {
+    position: absolute;
+    width: 100%;
+    height: 100rem;
+    background-color: #F0F3F4;
+}
+
+.features-container {
+    position: absolute;
+    padding: 3rem 2rem 2rem 2rem;
+    width: 100%;
+    height: 100%;
+}
+
+.features-heading {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.features-container .underline {
+    position: absolute;
+    width: 5rem;
+    height: 0.12rem;
+    background-color: #FFB300;
+    margin-top: 1.1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.feature-cards-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 3rem auto 0 auto;
+    width: 80%;
+}
+
+.feature {
+    background: #ffffff;
+    width: 200px;
+    height: 250px;
+    box-shadow: 0 0.3rem 0.5rem #00000028;
+    border-radius: 8px;
+    margin: 1rem auto 2rem auto;
+}
+
+.feature-icon {
+    background: #29B5F6;
+    width: 110px;
+    height: 110px;
+    border-radius: 55px;
+    margin: 1.8rem auto;
+    position: relative;
+}
+
+.feature-icon svg {
+    position: absolute;
+    fill: white;
+    width: 60px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.feature-icon img {
+    width: 110px;
+    height: 100%;
+    object-fit: contain;
+    padding: 0 25px;
+}
+
+.feature-title {
+    text-align: center;
+    margin: 1.5rem 0 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.feature-description {
+    margin: 1.5rem auto 1.5rem auto;
+    width: 80%;
+    text-align: center;
+    font-size: 1rem;
+    color: #333333;
+}
+
+/***********************************************************************************************************************************
+/****************************************************** Explore Page ***************************************************************
+/***********************************************************************************************************************************/
+
+.explore-page main {
+    width: 95%;
+    margin: 4rem auto 4rem auto;
+}
+
+/********************************************** Heat Map and Wage Graph Container **************************************************/
+
+.explore-heat-map-heading, .wage-comparison-heading {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    color: #212529;
+    letter-spacing: 0.1rem;
+}
+
+.wage-comparison-heading {
+    margin-top: 6rem;
+}
+
+.explore-page .underline {
+    width: 5rem;
+    margin: 0 auto 1.6rem auto;
+    height: 0.2rem;
+    background-color: #FFB300;
+}
+
+.explore-heat-map-description, .wage-comparison-description {
+    font-size: 1.05rem;
+    color: #424242;
+    text-align: center;
+    width: 98%;
+    margin: 0 auto;
+}
+
+.heat-map-container, .wage-graph-container {
+    display: grid;
+    border: 0.5px solid #72727279;
+    border-radius: 3px;
+    margin: 3rem auto 0 auto;
+    padding: 0.7rem;
+    width: 100%;
+}
+
+.heat-map-spinner-container, .wage-spinner-container {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 1fr;
+    margin: 1rem 0 0.3rem 0;
+    position: relative;
+}
+
+.spinner-heading {
+    font-size: 1.1rem;
+    align-self: center;
+    font-weight: 500;
+    justify-self: end;
+    margin-right: 1rem;
+}
+
+.spinner {
+    align-self: center;
+    width: 80%;
+}
+
+.heat-map, .wage-graph {
+    border-radius: 3px;
+    height: 240px;
+    margin: 0.5rem 0.4rem;
+}
+
+.heat-map {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wage-graph {
+    width: 100%;
+}
+
+.heat-map-description, .wage-graph-description {
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0 auto 0.5rem auto;
+    width: 95%;
+}
+
+/***********************************************************************************************************************************
+/******************************************************* Blogs Page ****************************************************************
+/***********************************************************************************************************************************/
+
+.blogs-page main {
+    margin: 3rem 0 3rem 2rem;
+}
+
+.blog-list {
+    margin-bottom: 2rem;
+    margin-right: 5rem;
+    display: grid;
+    grid-template-columns: 0.5rem auto;
+}
+
+.blogs-page .blog-page-container {
+    margin-bottom: 4rem;
+}
+
+.horizontal-line {
+    width: 0.22rem;
+    height: 2.8rem;
+    background: #FFB300;
+    grid-row: 1/3;
+    grid-column: 1/2;
+}
+
+.blogs-heading {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #29B5F6;
+    grid-row: 1/2;
+    grid-column: 2/3;
+    align-self: center;
+    margin-left: 1.1rem;
+}
+
+.blogs-container {
+    display: grid;
+    grid-template-columns: repeat(11, 21.5rem);
+    grid-template-rows: 23.4rem;
+    margin: 2rem 0 0 0;
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance: none) {
+        .blogs-container {
+            max-width: 450px;
+        }
+    }
+}
+
+.blogs-container::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.blogs-container::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.blog-container {
+    width: 18rem;
+    position: relative;
+}
+
+.blog-detail-container {
+    display: grid;
+    height: 23.4rem;
+    grid-template-rows: 11.5rem auto;
+    border-radius: 7px;
+}
+
+.blog-detail-container img {
+    width: 18rem;
+    height: 11.5rem;
+    border-radius: 7px;
+    object-fit: cover;
+}
+
+.blog-detail-container .blog-title {
+    margin: 0.5rem 0.5rem 0.3rem 0.5rem;
+    font-size: 1.2rem;
+    color: #29B5F6;
+}
+
+.blog-detail-container .blog-date {
+    margin: 0 0.5rem;
+    color: #727272;
+    font-size: 0.9rem;
+}
+
+.blog-detail-container .blog-description {
+    margin: 0.8rem 0.5rem;
+    color: #727272;
+    font-size: 0.85rem;
+}
+
+.blog-detail-container .read-more-button {
+    color: #FFB300;
+    text-decoration: none;
+    font-size: 1.05rem;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+    justify-self: end;
+    align-self: end;
+}
+
+.blog-detail-on-hover {
+    width: 18rem;
+    height: 23.4rem;
+    display: grid;
+    grid-template-rows: 85% 15%;
+    border-radius: 7px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right bottom, #0000007e, #000000ee);
+    background-size: cover;
+    padding: 1rem;
+}
+
+.blog-detail-on-hover .blog-description {
+    color: white;
+    font-size: 1.1rem;
+    overflow: hidden;
+    align-self: end;
+    margin-bottom: 0.5rem;
+}
+
+.blog-detail-on-hover .read-now-button {
+    color: white;
+    font-size: 0.8rem;
+    text-decoration: none;
+    justify-self: end;
+    align-self: center;
+    background: #FFB300;
+    padding: 0.3rem;
+    width: 8rem;
+    text-align: center;
+    border-radius: 5rem;
+}
+
+/***********************************************************************************************************************************
+/******************************************************** Blog Page ****************************************************************
+/***********************************************************************************************************************************/
+
+.blog-page .blog-page-container {
+    width: 98%;
+    padding: 0 1.5rem 0 1.5rem;
+    margin: 3rem auto 3rem auto;
+    border-radius: 7px;
+}
+
+.blog-page .blog-category {
+    font-size: 1.2rem;
+    color: #29B5F6;
+    margin-bottom: 0.4rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.blog-page .blog-underline {
+    background-color: #FFB300;
+    height: 0.2rem;
+    width: 4rem;
+    margin: 0 auto 1.7rem auto;
+}
+
+.blog-page .blog-title {
+    text-align: left;
+    font-size: 2rem;
+    margin: 0 0 0.5rem 0;
+    font-weight: 500;
+}
+
+.blog-page .author-date-container {
+    display: grid;
+    flex-flow: row nowrap;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    font-size: 1rem;
+    color: rgb(110, 110, 110);
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+    width: 99%;
+}
+
+.blog-page .author {
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+
+.blog-page .divider {
+    display: none;
+}
+
+.blog-page .date {
+    grid-row: 1/2;
+    grid-column: 1/3;
+}
+
+.blog-page .image-container {
+    align-self: center;
+    justify-self: center;
+}
+
+.blog-page img {
+    margin: 0 auto;
+    width: 100%;
+    height: 220px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    object-fit: cover;
+}
+
+.paragraphs, #blog-link {
+    font-size: 1.1rem;
+    margin: 3rem auto 0 auto;
+    padding: 0 1rem;
+    letter-spacing: 0.8px;
+    color: rgb(53, 53, 53);
+}
+
+#blog-link a {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #29B5F6;
+}
+
+#blog-link a:hover, nav a:hover {
+    color: #0388D2;
+}
+
+.paragraphs span {
+    font-weight: bold;
+}
+
+.paragraphs li {
+    margin-left: 3rem;
+}
+
+.paragraphs::first-letter {
+    float: left;
+    font-size: 3.3rem;
+    line-height: 2.9rem;
+    margin-right: 0.4rem;
+}
+
+/***********************************************************************************************************************************
+/**************************************************** About Us Page ****************************************************************
+/***********************************************************************************************************************************/
+
+.about-page main {
+    width: 98%;
+    margin: 3rem auto 3rem auto;
+}
+
+.team-description-container {
+    width: 100%;
+    display: grid;
+}
+
+.team-name {
+    grid-row: 1/2;
+    justify-self: center;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.team-description {
+    grid-row: 3/4;
+    color: #8D8D8D;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 80%;
+    justify-self: center;
+}
+
+.team-logo {
+    grid-row: 2/3;
+    width: 35%;
+    justify-self: center;
+}
+
+.team-container {
+    margin-top: 4rem;
+}
+
+.team-heading {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.team-underline {
+    width: 5rem;
+    height: 0.2rem;
+    background-color: #FFB300;
+    margin: 1rem auto;
+}
+
+.team-members-container {
+    display: grid;
+    width: 100%;
+    margin: 4rem 0 0 0;
+}
+
+.team-member-container {
+    display: grid;
+    padding: 0 0 3rem 0;
+    grid-template-columns: 1fr 1fr;
+}
+
+.member-pic-container {
+    width: 18rem;
+    height: 20.4rem;
+    margin: 0 auto;
+    grid-column: 1/3;
+    grid-row: 1/2;
+    justify-self: center;
+}
+
+.team-member-pic {
+    width: 18rem;
+    height: 20.4rem;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.team-member-name {
+    text-align: center;
+    margin-top: 0.7rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    grid-column: 1/3;
+    grid-row: 2/3;
+    color: #212529;
+}
+
+.team-member-role {
+    text-align: center;
+    margin-top: 0.1rem;
+    font-size: 1.15rem;
+    grid-column: 1/3;
+    grid-row: 3/4;
+    color: #3a3a3a;
+}
+
+.member-link-1 svg, .member-link-2 svg {
+    fill: #29B5F6;
+    width: 2rem;
+    height: 2rem;
+}
+
+.member-link-1 svg:hover, .member-link-2 svg:hover {
+    fill: #0388D2;
+}
+
+.member-link-1 {
+    grid-row: 4/5;
+    grid-column: 1/2;
+    justify-self: end;
+    align-self: center;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.2rem;
+}
+
+.member-link-2 {
+    grid-row: 4/5;
+    grid-column: 2/3;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    align-self: center;
+}
+
+/***********************************************************************************************************************************
+/**************************************************** Contact Us Page **************************************************************
+/***********************************************************************************************************************************/
+
+.contact-container {
+    width: 85%;
+    margin: 5rem auto 2rem auto;
+    border: 1px solid #13131341;
+    border-radius: 5px;
+    display: grid;
+}
+
+.contact-page .image-container {
+    display: none;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    align-self: center;
+    justify-self: center;
+}
+
+.contact-us-form {
+    display: grid;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    margin: 2rem 0;
+    width: 75%;
+    justify-self: center;
+}
+
+.contact-us-heading {
+    font-size: 3rem;
+    color: #29B5F6;
+    text-align: center;
+    font-weight: 500;
+    margin: 0 0 2rem 0;
+}
+
+.contact-page label {
+    font-size: 1.4rem;
+}
+
+.contact-page input, textarea {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0 1.5rem 0;
+    font-size: 1.2rem;
+    color: #3a3a3a;
+    background-color: #FAFCFE;
+    border: 0.5px solid #72727233;
+    border-radius: 3px;
+    padding: 0.5rem 1.5rem;
+}
+
+.contact-page textarea {
+    resize: none;
+}
+
+.contact-page button {
+    background-color: #FFB300;
+    color: white;
+    border: 0;
+    padding: 0.5rem 2.5rem;
+    margin: 0.3rem auto 0.3rem auto;
+    font-size: 1.3rem;
+    border-radius: 10rem;
+    text-align: center;
+    width: 17rem;
+    justify-self: center;
+}
+
+.contact-page #displayMessage {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #BC1B0E;
+}
+
+/***********************************************************************************************************************************
+************************************************************************************************************************************
+********************************************** Screen Minimum Size - 615px ********************************************************
+************************************************************************************************************************************
+***********************************************************************************************************************************/
+
+@media screen and (min-width: 615px) {
+    .button {
+        padding: 0.5rem 2.5rem;
+        font-size: 1.3rem;
+        width: 15rem;
+        margin: 0.3rem 0 0 0;
+    }
+    .logo svg {
+        width: 8.5rem;
+    }
+    .newsletter-subscription-dialog {
+        width: 50%;
+        border-radius: 5px;
+        padding: 4rem;
+    }
+    .newsletter-subscription-dialog .message {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    /****************************************************** Navigation Section *****************************************************/
+    .nav-box-button {
+        top: 0.7rem;
+        right: 0.7rem;
+    }
+    .nav-box-background {
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+    .nav-box-item {
+        display: block;
+        font-size: 2.2rem;
+    }
+    /******************************************************** Footer Section *******************************************************/
+    footer {
+        height: 31rem;
+    }
+    .newsletter-container {
+        padding-top: 10rem;
+    }
+    .newsletter-container .heading {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    #newsletter-message {
+        margin-bottom: 1.1rem;
+    }
+    #email {
+        width: 28rem;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+    }
+    .footer-container {
+        top: 70%;
+        padding: 3rem 2rem 0 3rem;
+        transform: translate(0, -15%);
+    }
+    .footer-container svg {
+        fill: white;
+        stroke: white;
+        height: 4rem;
+        width: 5rem;
+        align-self: end;
+    }
+    .contact-link {
+        font-size: 1.5rem;
+        margin-right: 2rem;
+    }
+    /******************************************************************************************************************************/
+    /******************************************************** Home Section ********************************************************/
+    /******************************************************************************************************************************/
+    .general-comparison-container .heading {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .general-comparison-container .underline {
+        width: 6rem;
+        height: 0.2rem;
+        margin-bottom: 2rem;
+    }
+    .general-comparison-container .description {
+        font-size: 1.2rem;
+        width: 85%;
+        margin: 0 auto;
+    }
+    .general-heat-map-container {
+        padding: 1.6rem 1.3rem 1.3rem 1.3rem;
+    }
+    .general-heat-map-container .heading {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+    .general-heat-map {
+        height: 300px;
+        margin: 1rem 0 0.7rem 0;
+        border-radius: 4px;
+    }
+    .general-heat-map-description {
+        font-size: 1.1rem;
+        margin: 0 auto 1rem auto;
+        width: 90%;
+    }
+    /********************************** Feature Container ********************************/
+    .features-section {
+        height: 43rem;
+    }
+    .feature-grey-background {
+        height: 26rem;
+    }
+    .features-container {
+        padding: 4rem 1.5rem 1rem 1.5rem;
+    }
+    .features-heading {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    .features-container .underline {
+        width: 7rem;
+        height: 0.2rem;
+        margin-top: 0.4rem;
+    }
+    .feature-cards-container {
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        margin: 5rem auto 0 auto;
+        width: 100%;
+    }
+    .feature {
+        width: 180px;
+        height: 280px;
+    }
+    .feature-icon {
+        width: 115px;
+        height: 115px;
+        border-radius: 60px;
+        margin: 2.7rem auto 2rem;
+    }
+    .feature-icon svg {
+        width: 58px;
+    }
+    .feature-title {
+        margin: 1.5rem 0 0.6rem 0;
+    }
+    .feature-description {
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.1rem;
+        color: #707070;
+    }
+    /********************************************************************************************************************************
+    /****************************************************** Explore Page ************************************************************
+    /********************************************************************************************************************************/
+    /********************************************** Heat Map and Wage Graph Container ***********************************************/
+    .explore-heat-map-heading, .wage-comparison-heading {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+    }
+    .wage-comparison-heading {
+        margin-top: 7rem;
+    }
+    .explore-page .underline {
+        width: 6rem;
+        height: 0.2rem;
+        margin-bottom: 3rem;
+    }
+    .explore-heat-map-description, .wage-comparison-description {
+        font-size: 1.1rem;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .heat-map-container, .wage-graph-container {
+        padding: 1.6rem 1.3rem 1.3rem 1.3rem;
+    }
+    .heat-map-spinner-container, .wage-spinner-container {
+        margin: 0.5rem 0;
+        grid-template-columns: 45% 55%;
+    }
+    .spinner-heading {
+        font-size: 1.4rem;
+    }
+    .spinner {
+        width: 57%;
+        height: 3.2rem;
+    }
+    .heat-map, .wage-graph {
+        height: 300px;
+        margin: 1rem 0 0.7rem 0;
+        border-radius: 4px;
+    }
+    .heat-map-description, .wage-graph-description {
+        font-size: 1.1rem;
+        margin: 0 auto 1rem auto;
+        width: 90%;
+    }
+    /***********************************************************************************************************************************
+    /******************************************************* Blogs Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blogs-page main {
+        margin: 3rem 0 3rem 4rem;
+    }
+    .blog-list {
+        grid-template-columns: 2rem auto;
+    }
+    .blog-page-container {
+        margin-bottom: 5rem;
+    }
+    .horizontal-line {
+        width: 0.3rem;
+        height: 3.2rem;
+    }
+    .blogs-heading {
+        font-size: 2.1rem;
+        margin-left: 0;
+        align-self: center;
+    }
+    .blogs-container {
+        grid-template-columns: repeat(11, 22rem);
+        grid-template-rows: 26rem;
+        margin: 2rem 0 0 0;
+    }
+    .blog-container {
+        width: 19rem;
+    }
+    .blog-detail-container {
+        height: 26rem;
+        grid-template-rows: 12rem auto;
+        border-radius: 8px;
+    }
+    .blog-detail-container img {
+        width: 19rem;
+        height: 12rem;
+        border-radius: 8px;
+    }
+    .blog-detail-container .blog-title {
+        margin: 0.8rem 0.8rem 0.3rem 0.8rem;
+        font-size: 1.15rem;
+    }
+    .blog-detail-container .blog-date {
+        margin: 0 0.8rem;
+        font-size: 1.1rem;
+    }
+    .blog-detail-container .blog-description {
+        margin: 0.8rem;
+        font-size: 1.1rem;
+    }
+    .blog-detail-container .read-more-button {
+        font-size: 1.15rem;
+        margin: 0.5rem 0.8rem 0.8rem 0.8rem;
+    }
+    .blog-detail-on-hover {
+        width: 19rem;
+        height: 26rem;
+        border-radius: 8px;
+    }
+    .blog-detail-on-hover .blog-description {
+        font-size: 1.2rem;
+    }
+    .blog-detail-on-hover .read-now-button {
+        font-size: 1rem;
+        padding: 0.4rem;
+        width: 10rem;
+    }
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance: none) {
+            .blogs-container {
+                max-width: 500px;
+            }
+        }
+    }
+    /***********************************************************************************************************************************
+    /******************************************************** Blog Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blog-page .blog-page-container {
+        margin: 4rem auto 3rem auto;
+        padding: 0rem 2rem 3rem 2rem;
+    }
+    .blog-page .blog-category {
+        font-size: 1.4rem;
+        margin-bottom: 0.6rem;
+    }
+    .blog-page .blog-underline {
+        width: 5rem;
+        margin: 0 auto 2.5rem auto;
+    }
+    .blog-page .blog-title {
+        text-align: center;
+        font-size: 2.2rem;
+        margin: 0 auto 1rem auto;
+    }
+    .blog-page img {
+        height: 320px;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+    }
+    .blog-page .author-date-container {
+        display: flex;
+        flex-flow: row nowrap;
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+    .blog-page .author, .blog-page .divider {
+        margin-right: 0.7rem;
+    }
+    .blog-page .divider {
+        display: block;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** About Us Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .about-page main {
+        width: 96%;
+        margin: 4rem auto 3rem auto;
+    }
+    .team-description-container {
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 43% 58%;
+    }
+    .team-name {
+        grid-column: 1/2;
+        margin-bottom: 0;
+        font-size: 3.5rem;
+    }
+    .team-description {
+        grid-row: 2/3;
+        grid-column: 1/2;
+        font-size: 1.1rem;
+        width: 78%;
+        align-self: center;
+    }
+    .team-logo {
+        grid-row: 1/3;
+        grid-column: 2/3;
+        width: 62%;
+        justify-self: start;
+        align-self: center;
+    }
+    .team-container {
+        margin-top: 5rem;
+    }
+    .team-heading {
+        font-size: 2rem;
+    }
+    .team-underline {
+        width: 6rem;
+        margin: 1.3rem auto;
+    }
+    .team-members-container {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 4rem auto 0 auto;
+        width: 80%;
+    }
+    .team-member-role {
+        font-size: 1.3rem;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** Contact Us Page **************************************************************
+    /***********************************************************************************************************************************/
+    .contact-container {
+        width: 96%;
+        margin: 4rem auto 2rem auto;
+        padding: 1.5rem;
+        grid-template-columns: 48% 52%;
+    }
+    .contact-page .image-container {
+        display: block;
+    }
+    .image-title {
+        color: #212529;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+    .contact-image img {
+        margin-top: 3rem;
+    }
+    .contact-us-form {
+        grid-column: 2/3;
+        margin: 2rem 0 2rem 2rem;
+        width: 85%;
+    }
+    .contact-us-heading {
+        font-size: 2.6rem;
+        margin: 0 0 2rem 0;
+    }
+    label {
+        font-size: 1.2rem;
+    }
+    .contact-page input, .contact-page textarea {
+        font-size: 1rem;
+    }
+    .contact-page button {
+        padding: 0.5rem 2.5rem;
+        margin: 0.3rem auto 0.3rem auto;
+        font-size: 1.3rem;
+        width: 15rem;
+    }
+}
+
+/***********************************************************************************************************************************
+************************************************************************************************************************************
+********************************************** Screen Minimum Size - 810px ********************************************************
+************************************************************************************************************************************
+***********************************************************************************************************************************/
+
+@media screen and (min-width: 810px) {
+    .button {
+        font-size: 1.4rem;
+        width: 16rem;
+        margin: 0.5rem 0 0 0;
+    }
+    .newsletter-subscription-dialog {
+        width: 50%;
+        border-radius: 6px;
+        padding: 6rem;
+    }
+    .newsletter-subscription-dialog .message {
+        font-size: 1.8rem;
+        margin-bottom: 4rem;
+    }
+    /****************************************************** Navigation Section *****************************************************/
+    .nav-small-screen {
+        display: none;
+    }
+    /* .navigation-container {
+        padding: 0 2rem;
+    } */
+    .nav-large-screen {
+        display: block;
+    }
+    nav ul li {
+        font-size: 1.7rem;
+    }
+    .navigation-header {
+        /* padding: 0 2rem; */
+    }
+    /******************************************************** Footer Section *******************************************************/
+    footer {
+        height: 38rem;
+    }
+    .newsletter-container {
+        padding-top: 13rem;
+    }
+    .newsletter-container .heading {
+        font-size: 2.1rem;
+        margin-bottom: 1.2rem;
+    }
+    #newsletter-message {
+        margin-bottom: 1.4rem;
+    }
+    #email {
+        width: 33rem;
+        padding: 1.1rem 2rem;
+        font-size: 1.2rem;
+    }
+    .footer-container {
+        top: 73%;
+    }
+    .footer-container svg {
+        height: 4.5rem;
+    }
+    /******************************************************************************************************************************/
+    /******************************************************** Home Section ********************************************************/
+    /******************************************************************************************************************************/
+    .general-comparison-container {
+        margin: 5rem auto 5rem auto;
+    }
+    .general-comparison-container .heading {
+        font-size: 2.6rem;
+    }
+    .general-comparison-container .underline {
+        width: 6rem;
+    }
+    .general-heat-map-container {
+        margin: 4rem auto 0 auto;
+        padding: 1.8rem 1.6rem 1.5rem 1.6rem;
+        width: 90%;
+        border-radius: 4px;
+    }
+    .general-heat-map-container .heading {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+    .general-heat-map {
+        height: 330px;
+        margin: 1.5rem 0 0.8rem 0;
+    }
+    .general-heat-map-description {
+        margin: 0 auto 1.1rem auto;
+    }
+    /********************************** Feature Container ********************************/
+    .features-section {
+        height: 50rem;
+    }
+    .feature-grey-background {
+        height: 30rem;
+    }
+    .features-container {
+        padding: 5rem 2rem 2rem 2rem;
+    }
+    .features-heading {
+        font-size: 2.2rem;
+    }
+    .features-container .underline {
+        width: 7rem;
+    }
+    .feature-cards-container {
+        margin: 5.5rem auto 0 auto;
+        width: 93%;
+    }
+    .feature {
+        width: 220px;
+        height: 330px;
+    }
+    .feature-icon {
+        width: 125px;
+        height: 125px;
+        border-radius: 63px;
+        margin: 3.7rem auto 2.8rem;
+    }
+    .feature-icon svg {
+        width: 62px;
+    }
+    .feature-title {
+        margin: 2rem 0 1rem 0;
+        font-size: 1.7rem;
+    }
+    .feature-description {
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.1rem;
+    }
+    /********************************************************************************************************************************
+    /****************************************************** Explore Page ************************************************************
+    /********************************************************************************************************************************/
+    .explore-page main {
+        margin: 5rem auto 2rem auto;
+    }
+    /********************************************** Heat Map and Wage Graph Container ***********************************************/
+    .explore-heat-map-heading, .wage-comparison-heading {
+        font-size: 2.6rem;
+    }
+    .wage-comparison-heading {
+        margin-top: 7rem;
+    }
+    .explore-heat-map-description, .wage-comparison-description {
+        font-size: 1.2rem;
+        width: 85%;
+    }
+    .heat-map-container, .wage-graph-container {
+        margin: 4rem auto 0 auto;
+        padding: 1.8rem 1.6rem 1.5rem 1.6rem;
+        width: 90%;
+        border-radius: 4px;
+    }
+    .heat-map-spinner-container, .wage-spinner-container {
+        margin: 0.5rem 0;
+        grid-template-columns: 45% 55%;
+    }
+    .spinner-heading {
+        font-size: 1.4rem;
+    }
+    .spinner {
+        width: 57%;
+        height: 3.2rem;
+    }
+    .heat-map, .wage-graph {
+        height: 330px;
+        margin: 1.5rem 0 0.8rem 0;
+        border-radius: 4px;
+    }
+    .heat-map-description, .wage-graph-description {
+        font-size: 1.1rem;
+        margin: 0 auto 1.1rem auto;
+        width: 90%;
+    }
+    /***********************************************************************************************************************************
+    /******************************************************* Blogs Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blogs-page main {
+        margin: 5rem 0 3rem 6rem;
+    }
+
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance: none) {
+            .blogs-container {
+                max-width: 600px;
+            }
+        }
+    }
+    /***********************************************************************************************************************************
+    /******************************************************** Blog Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blog-page .blog-page-container {
+        width: 90%;
+        margin: 5rem auto 3rem auto;
+    }
+    .blog-page .blog-category {
+        font-size: 1.5rem;
+    }
+    .blog-page .blog-title {
+        font-size: 2.6rem;
+        margin: 0 0.7rem 1rem 0;
+    }
+    .blog-page img {
+        height: 420px;
+        border-radius: 8px;
+    }
+    .blog-page .author-date-container {
+        margin-bottom: 2.5rem;
+    }
+    .blog-page .author, .blog-page .divider {
+        margin-right: 0.7rem;
+    }
+    .blog-page .divider {
+        display: block;
+    }
+    .paragraphs {
+        font-size: 1.2rem;
+    }
+    #blog-link {
+        font-size: 1.3rem;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** About Us Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .about-page main {
+        width: 90%;
+        margin: 6rem auto 3rem auto;
+    }
+    .team-description-container {
+        grid-template-columns: 65% 35%;
+        grid-template-rows: 37% 63%;
+    }
+    .team-name {
+        font-size: 4.2rem;
+    }
+    .team-description {
+        font-size: 1.3rem;
+        width: 72%;
+    }
+    .team-logo {
+        width: 65%;
+    }
+    .team-container {
+        margin-top: 6rem;
+    }
+    .team-heading {
+        font-size: 2.55rem;
+    }
+    .team-underline {
+        width: 6rem;
+    }
+    .team-members-container {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 4rem 0 0 0;
+        width: 100%;
+    }
+    .team-member-container {
+        padding: 1.8rem;
+    }
+    .member-pic-container {
+        width: 20rem;
+        height: 23rem;
+    }
+    .team-member-pic {
+        width: 20rem;
+        height: 23rem;
+        border-radius: 5px;
+    }
+    .team-member-name {
+        font-size: 1.8rem;
+    }
+    .team-member-role {
+        font-size: 1.3rem;
+    }
+    .member-link-1 svg, .member-link-2 svg {
+        width: 2.3rem;
+        height: 2.3rem;
+    }
+    .member-link-1 {
+        margin-top: 1rem;
+    }
+    .member-link-2 {
+        margin-top: 1rem;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** Contact Us Page **************************************************************
+    /***********************************************************************************************************************************/
+    .contact-container {
+        width: 90%;
+        margin: 6rem auto 2rem auto;
+        border-radius: 7px;
+        padding: 2.5rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .contact-page .image-container {
+        display: block;
+    }
+    .image-title {
+        font-size: 1.6rem;
+    }
+    .contact-us-form {
+        margin: 2rem 0;
+        width: 80%;
+    }
+    .contact-us-heading {
+        font-size: 3rem;
+    }
+    .contact-page label {
+        font-size: 1.4rem;
+    }
+    .contact-page input, .contact-page textarea {
+        font-size: 1.2rem;
+    }
+    .contact-page button {
+        width: 17rem;
+    }
+}
+
+/***********************************************************************************************************************************
+************************************************************************************************************************************
+********************************************** Screen Minimum Size - 1005px ********************************************************
+************************************************************************************************************************************
+***********************************************************************************************************************************/
+
+@media screen and (min-width: 1005px) {
+    .button {
+        font-size: 1.65rem;
+        width: 17.5rem;
+    }
+    .newsletter-subscription-dialog {
+        width: 40%;
+        border-radius: 7px;
+    }
+    .newsletter-subscription-dialog .message {
+        font-size: 2rem;
+    }
+    /******************************************************** Footer Section *******************************************************/
+    footer {
+        height: 43rem;
+    }
+    .newsletter-container {
+        padding-top: 16rem;
+    }
+    .newsletter-container .heading {
+        font-size: 2.3rem;
+    }
+    #newsletter-message {
+        margin-bottom: 1.8rem;
+    }
+    #email {
+        width: 38rem;
+        padding: 1.2rem 2rem;
+        font-size: 1.3rem;
+        border-radius: 5px;
+    }
+    .footer-container {
+        top: 75%;
+    }
+    /******************************************************************************************************************************/
+    /******************************************************** Home Section ********************************************************/
+    /******************************************************************************************************************************/
+    .general-comparison-container {
+        margin: 6rem auto 5rem auto;
+        width: 90%;
+    }
+    .general-comparison-container .heading {
+        font-size: 2.7rem;
+    }
+    .general-comparison-container .underline {
+        width: 7rem;
+    }
+    .general-comparison-container .description {
+        font-size: 1.25rem;
+        width: 80%;
+    }
+    .general-heat-map-container {
+        margin: 4.5rem auto 0 auto;
+        padding: 2rem 2rem 1.5rem 2rem;
+        width: 85%;
+        border-radius: 5px;
+    }
+    .general-heat-map-container .heading {
+        font-size: 2rem;
+    }
+    .general-heat-map {
+        height: 400px;
+        margin: 1.8rem 0 1rem 0;
+        border-radius: 5px;
+    }
+    .general-heat-map-description {
+        font-size: 1.2rem;
+        margin: 0 auto 1.4rem auto;
+    }
+    /********************************** Feature Container ********************************/
+    .features-section {
+        height: 55rem;
+    }
+    .feature-grey-background {
+        height: 31rem;
+    }
+    .features-container {
+        padding: 6rem 2rem 2rem 2rem;
+    }
+    .features-heading {
+        font-size: 2.2rem;
+    }
+    .features-container .underline {
+        width: 7rem;
+    }
+    .feature-cards-container {
+        width: 85%;
+    }
+    .feature {
+        width: 250px;
+        height: 350px;
+    }
+    .feature-icon {
+        width: 135px;
+        height: 135px;
+        border-radius: 70px;
+    }
+    .feature-icon svg {
+        width: 65px;
+    }
+    .feature-title {
+        margin: 2.5rem 0 1rem 0;
+        font-size: 1.8rem;
+    }
+    .feature-description {
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.2rem;
+    }
+    /********************************************************************************************************************************
+    /****************************************************** Explore Page ************************************************************
+    /********************************************************************************************************************************/
+    .explore-page main {
+        margin: 6rem auto 2rem auto;
+        width: 90%;
+    }
+    /********************************************** Heat Map and Wage Graph Container ***********************************************/
+    .explore-heat-map-heading, .wage-comparison-heading {
+        font-size: 2.7rem;
+        margin-bottom: 1.6rem;
+    }
+    .wage-comparison-heading {
+        margin-top: 10rem;
+    }
+    .explore-page .underline {
+        width: 7rem;
+        height: 0.2rem;
+        margin-bottom: 3rem;
+    }
+    .explore-heat-map-description, .wage-comparison-description {
+        font-size: 1.25rem;
+        width: 80%;
+    }
+    .heat-map-container, .wage-graph-container {
+        border-radius: 5px;
+        margin: 4.5rem auto 0 auto;
+        padding: 2rem 2rem 1.5rem 2rem;
+        width: 85%;
+    }
+    .heat-map-spinner-container, .wage-spinner-container {
+        margin: 1rem 0;
+        grid-template-columns: 43% 58%;
+    }
+    .spinner {
+        width: 55%;
+    }
+    .heat-map, .wage-graph {
+        height: 390px;
+        margin: 1.3rem 0 1rem 0;
+        border-radius: 5px;
+    }
+    .heat-map-description, .wage-graph-description {
+        font-size: 1.2rem;
+        margin: 0 auto 1.4rem auto;
+    }
+    /***********************************************************************************************************************************
+    /******************************************************* Blogs Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blogs-page main {
+        margin: 6rem 0 3rem 10rem;
+    }
+    .blog-list {
+        grid-template-columns: 2.5rem auto;
+    }
+    .horizontal-line {
+        height: 3.4rem;
+    }
+    .blogs-heading {
+        font-size: 2.3rem;
+    }
+    .blogs-container {
+        grid-template-columns: repeat(11, 25rem);
+        grid-template-rows: 27.5rem;
+        margin: 2.5rem 0 0 0;
+    }
+    .blog-container {
+        width: 20rem;
+    }
+    .blog-detail-container {
+        border-radius: 10px;
+        height: 27.5rem;
+        grid-template-rows: 13rem auto;
+    }
+    .blog-detail-container img {
+        width: 20rem;
+        height: 13rem;
+        border-radius: 10px;
+    }
+    .blog-detail-container .blog-title {
+        margin: 1rem 1rem 0.3rem 1rem;
+        font-size: 1.25rem;
+    }
+    .blog-detail-container .blog-date {
+        margin: 0 1rem;
+    }
+    .blog-detail-container .blog-description {
+        margin: 1rem 1rem;
+    }
+    .blog-detail-container .read-more-button {
+        font-size: 1.2rem;
+        margin: 0.5rem 1rem 1rem 1rem;
+    }
+    .blog-detail-on-hover {
+        width: 20rem;
+        height: 27.5rem;
+        border-radius: 10px;
+    }
+    .blog-detail-on-hover .blog-description {
+        font-size: 1.3rem;
+    }
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance: none) {
+            .blogs-container {
+                max-width: 750px;
+            }
+        }
+    }
+    /***********************************************************************************************************************************
+    /******************************************************** Blog Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blog-page .blog-page-container {
+        width: 75%;
+        margin: 6rem auto 3rem auto;
+        padding: 0rem 3rem 3rem 3rem;
+    }
+    .blog-page img {
+        border-radius: 10px;
+    }
+    .paragraphs {
+        font-size: 1.3rem;
+    }
+    #blog-link {
+        font-size: 1.4rem;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** About Us Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .about-page main {
+        width: 85%;
+        margin: 8rem auto 3rem auto;
+    }
+    .team-description-container {
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 35% 65%;
+    }
+    .team-name {
+        font-size: 4.5rem;
+    }
+    .team-description {
+        font-size: 1.7rem;
+        width: 70%;
+    }
+    .team-logo {
+        width: 60%;
+    }
+    .team-container {
+        margin-top: 7rem;
+    }
+    .team-heading {
+        font-size: 2.7rem;
+    }
+    .team-underline {
+        width: 7rem;
+        margin: 1.5rem auto;
+    }
+    .team-members-container {
+        margin: 5rem 0 0 0;
+    }
+    .team-member-container {
+        padding: 2rem;
+    }
+    .member-pic-container {
+        width: 22rem;
+        height: 25rem;
+    }
+    .team-member-pic {
+        width: 22rem;
+        height: 25rem;
+        border-radius: 8px;
+    }
+    .team-member-name {
+        font-size: 1.9rem;
+    }
+    .team-member-role {
+        font-size: 1.4rem;
+    }
+    .member-link-1 svg, .member-link-2 svg {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** Contact Us Page **************************************************************
+    /***********************************************************************************************************************************/
+    .contact-container {
+        width: 80%;
+        margin: 8rem auto 2rem auto;
+        border-radius: 10px;
+        padding: 3rem;
+    }
+    .contact-page .image-container {
+        display: block;
+    }
+    .image-title {
+        font-size: 1.7rem;
+    }
+    .contact-us-form {
+        width: 75%;
+    }
+}
+
+/***********************************************************************************************************************************
+************************************************************************************************************************************
+********************************************** Screen Minimum Size - 1200px ********************************************************
+************************************************************************************************************************************
+***********************************************************************************************************************************/
+
+@media screen and (min-width: 1200px) {
+    .newsletter-subscription-dialog {
+        width: 35%;
+    }
+    /******************************************************** Footer Section *******************************************************/
+    footer {
+        height: 48rem;
+    }
+    .newsletter-container {
+        padding-top: 18rem;
+    }
+    .footer-container {
+        top: 70%;
+    }
+    /******************************************************************************************************************************/
+    /******************************************************** Home Section ********************************************************/
+    /******************************************************************************************************************************/
+    .general-comparison-container {
+        margin: 7rem auto 5rem auto;
+        width: 75%;
+    }
+    .general-comparison-container .description {
+        font-size: 1.3rem;
+        width: 70%;
+    }
+    .general-heat-map-container {
+        padding: 2.2rem 2rem 1.5rem 2rem;
+        width: 80%;
+    }
+    .general-heat-map {
+        height: 420px;
+    }
+    /********************************** Feature Container ********************************/
+    .feature-cards-container {
+        width: 70%;
+    }
+    .feature {
+        width: 260px;
+        height: 360px;
+    }
+    .feature-icon {
+        width: 140px;
+        height: 140px;
+    }
+    .feature-icon svg {
+        width: 70px;
+    }
+    /********************************************************************************************************************************
+    /****************************************************** Explore Page ************************************************************
+    /********************************************************************************************************************************/
+    .explore-page main {
+        margin: 7rem auto 2rem auto;
+        width: 80%;
+    }
+    /********************************************** Heat Map and Wage Graph Container ***********************************************/
+    .explore-heat-map-description, .wage-comparison-description {
+        font-size: 1.3rem;
+        width: 70%;
+    }
+    .heat-map-container, .wage-graph-container {
+        padding: 2.2rem 2rem 1.5rem 2rem;
+        width: 80%;
+    }
+    .heat-map, .wage-graph {
+        height: 420px;
+    }
+    /***********************************************************************************************************************************
+    /******************************************************* Blogs Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blogs-page main {
+        margin: 7rem 0 3rem 15rem;
+    }
+    .blog-list {
+        grid-template-columns: 2.5rem auto;
+    }
+    .blogs-container {
+        margin: 3rem 0 0 0;
+    }
+    @media not all and (min-resolution:.001dpcm) {
+        @supports (-webkit-appearance: none) {
+            .blogs-container {
+                max-width: 1100px;
+            }
+        }
+    }
+    /***********************************************************************************************************************************
+    /******************************************************** Blog Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .blog-page .blog-page-container {
+        width: 60%;
+        margin: 7rem auto 3rem auto;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** About Us Page ****************************************************************
+    /***********************************************************************************************************************************/
+    .about-page main {
+        width: 80%;
+        margin: 10rem auto 3rem auto;
+    }
+    /***********************************************************************************************************************************
+    /**************************************************** Contact Us Page **************************************************************
+    /***********************************************************************************************************************************/
+    .contact-container {
+        width: 75%;
+        margin: 10rem auto 3rem auto;
+    }
+}
+
+/*****************************************************************************************************************************
+********************************************************* Blog Card Animation ************************************************
+******************************************************************************************************************************/
+
+.blog-detail-on-hover {
+    display: hidden;
+    animation: collapse 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.blog-container:hover>.blog-detail-on-hover {
+    animation: reveal 1s;
+}
+
+@keyframes reveal {
+    0% {
+        -webkit-clip-path: circle(10% at 100% 0%);
+        clip-path: circle(10% at 100% 0%);
+    }
+    100% {
+        -webkit-clip-path: circle(200% at 100% 0%);
+        clip-path: circle(200% at 100% 0%);
+    }
+}
+
+@keyframes collapse {
+    0% {
+        -webkit-clip-path: circle(100% at 100% 0%);
+        clip-path: circle(100% at 100% 0%);
+    }
+    100% {
+        -webkit-clip-path: circle(0% at 100% 0%);
+        clip-path: circle(0% at 100% 0%);
+        display: block;
+    }
+}
+
+.blogs-container.active {
+    background: rgba(255, 255, 255, 0.3);
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+}
